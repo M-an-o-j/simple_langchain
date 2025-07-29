@@ -47,14 +47,14 @@ POST /ask
 
 How to Run (a.k.a. Bring Frankenstein to Life)
 
-# 1. Install the dependencies
+## 1. Install the dependencies
 pip install -r requirements.txt
 
-# 2. Plug in your Arduino (yes, really)
-# 3. Set your OpenRouter API key
+## 2. Plug in your Arduino (yes, really)
+## 3. Set your OpenRouter API key
 export OPENROUTER_API_KEY=your_key_here
 
-# 4. Start the mind of MCP
+## 4. Start the mind of MCP
 uvicorn main:app --reload
 
 ⚠️ Disclaimer
