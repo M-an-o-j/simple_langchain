@@ -55,3 +55,22 @@ export OPENROUTER_API_KEY=your_key_here
 
 # 4. Start the mind of MCP
 uvicorn main:app --reload
+
+⚠️ Disclaimer
+This AI might win at rock-paper-scissors, but it is not responsible for any emotional damage caused by losing.
+
+🧞 Future Features (or "Stretch Goals Because Why Not")
+🗺️ Ask for weather, because AI needs to feel the vibe outside
+
+🧏 Voice commands, so you can talk like Iron Man
+
+🤡 Joke generator, because this README isn't enough
+
+🧠 Memory, because even robots forget things sometimes
+
+🧔 About the Author
+Built by someone who:
+
+Wanted a smart assistant.
+
+Ended up with a light switch that tells jokes.
