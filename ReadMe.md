@@ -43,6 +43,7 @@ MCP is an AI agent with a modular brain 🧠 that can:
 
 ```http
 POST /ask
+```
 
 How to Run (a.k.a. Bring Frankenstein to Life)
 
