@@ -1,35 +1,35 @@
-from fastapi import FastAPI, Request
-from pydantic import BaseModel
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.responses import HTMLResponse
 from agent import run_mcp_agent
 
 app = FastAPI()
 
-class Query(BaseModel):
-    query: str
-
-@app.post("/ask")
-async def ask_agent(payload: Query):
+@app.websocket("/ws/ask")
+async def websocket_endpoint(websocket: WebSocket):
     """
-    POST /ask
+    WebSocket /ws/ask
 
-    Runs the MCP AI agent on the input query and returns the response.
+    Allows real-time communication with the MCP agent.
+    Accepts natural language messages via WebSocket and returns the AI-generated response.
 
-    Args:
-        payload (Query): A JSON object with a single key, "query", which is the
-            input for the AI agent.
+    Usage:
+        Client connects and sends a message string (the query).
+        Server responds with the result from the LangChain agent.
 
-    Returns:
-        dict: A JSON object with either a "response" or an "error" key.
-            "response" contains the output of the AI agent.
-            "error" contains a string describing the error if the AI agent
-                fails.
+    On disconnect, the connection is closed gracefully.
     """
+    await websocket.accept()
     try:
-        response = run_mcp_agent(payload.query)
-        return {"response": response}
-    except Exception as e:
-        return {"error": str(e)}
-    
+        while True:
+            query = await websocket.receive_text()
+            try:
+                response = run_mcp_agent(query)
+                print(response)
+                await websocket.send_text(response["output"])
+            except Exception as e:
+                await websocket.send_text(f"Error: {str(e)}")
+    except WebSocketDisconnect:
+        print("WebSocket connection closed")
 
 if __name__ == "__main__":
     import uvicorn

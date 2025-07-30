@@ -5,7 +5,7 @@ import os
 
 llm = ChatOpenAI(
     model_name="gpt-3.5-turbo",
-    openai_api_key="OPEN_ROUTER_API_KEY",
+    openai_api_key="openrouter_api_key",
     openai_api_base="https://openrouter.ai/api/v1",  # Optional for OpenRouter
 )
 

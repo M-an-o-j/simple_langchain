@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MCP Agent Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 60%;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #007bff;
+      color: white;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      background: #fff;
+      border-top: 1px solid #ccc;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 16px;
+      margin-left: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container" id="chat"></div>
+
+  <div class="input-container">
+    <input id="messageInput" type="text" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const input = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    const ws = new WebSocket("ws://localhost:8000/ws/ask");
+
+    ws.onmessage = (event) => {
+      addMessage(event.data, 'bot');
+    };
+
+    ws.onopen = () => {
+      console.log("Connected to MCP Agent");
+    };
+
+    ws.onclose = () => {
+      console.log("Disconnected from MCP Agent");
+      sendBtn.disabled = true;
+      input.disabled = true;
+    };
+
+    sendBtn.onclick = () => {
+      const msg = input.value.trim();
+      if (!msg) return;
+      addMessage(msg, 'user');
+      ws.send(msg);
+      input.value = '';
+    };
+
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendBtn.click();
+      }
+    });
+
+    function addMessage(text, role) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${role}`;
+      msgDiv.textContent = text;
+      chat.appendChild(msgDiv);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
