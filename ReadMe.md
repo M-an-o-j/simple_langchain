@@ -1,77 +1,68 @@
-# 🤖 MCP Agent - Modular Conversational Protocol Server
+# 🤖 MCP Server – LangChain x Arduino UNO Integration
 
-Welcome to the **MCP Agent**, your AI-powered multitool sidekick that talks, calculates, plays games, and even controls real-world lights! 🌍💡
+Welcome to my first step into the chaotic yet delightful world of **LangChain agents**!  
+This repo is a proud (and slightly unstable) blend of:
 
-> Think of it like **Jarvis**, but still in beta... and sometimes emotionally unstable.
+- 🤝 FastAPI + WebSocket
+- 🧠 LangChain (yes, Harrison Chase, you rock)
+- 🔌 Arduino UNO (with `pyfirmata2`)
+- 💡 Real-life LIGHT CONTROL using just... words. Yes, literally.
 
----
+## 🌟 What Can It Do?
 
-## 🎯 What It Does (a.k.a. Why This Exists)
+You say:  
+> _"I want brightness in my room"_  
+🌟 BOOM! The lights turn ON.
 
-MCP is an AI agent with a modular brain 🧠 that can:
-- 🧮 Solve math problems without crying
-- 🎮 Play Rock-Paper-Scissors and *usually* lose
-- 🗣️ Say hi like a socially awkward chatbot
-- 💡 Turn lights on and off like a polite ghost
-- 🧰 Expand with new tools because it has commitment issues
+You say:  
+> _"I want to cut brightness in my room"_  
+🌑 BAM! The lights go OFF.
 
----
+🎬 The whole thing is controlled via Swagger UI and also has a shiny ChatGPT-style frontend (because what’s an AI project without a slick chat interface, right?).
 
-## 🔌 Features
+## 🧪 Tools Used (aka the Avengers lineup)
 
-| Tool Name   | Purpose                            | AI’s Mood When Using It        |
-|------------|-------------------------------------|--------------------------------|
-| `Greeter`  | Says hello to humans                | 😃 Friendly but clingy         |
-| `Calculator` | Evaluates math expressions         | 🤓 Nerd mode activated         |
-| `Paper Game` | Rock-Paper-Scissors with attitude | 🎲 RNGesus takes the wheel     |
-| `Lights On` | Turns on Arduino LED               | ⚡ It’s alive!                 |
-| `Lights Off` | Turns off Arduino LED              | 😴 Night night, light          |
+| Tool | Why It's Here |
+|------|---------------|
+| 🧮 Calculator | Because even robots need help with math sometimes. |
+| 🎮 Paper Game | A.k.a. rock-paper-scissors showdown with a bot. |
+| 👋 Greeter | Polite AI who never forgets to say hello. |
+| 💡 Lights On | Tells Arduino UNO to stop being lazy and wake up the bulb. |
+| 📴 Lights Off | Tells Arduino UNO to go back to sleep. |
 
----
+## 🧠 LangChain Newbie Alert!
 
-## 🧠 Tech Stack
+⚠️ This is my **first attempt** with **LangChain**. Inspired by Harrison Chase himself, I dove head-first into tool-using agents like a kid in a candy shop.  
+(Also learned about LangGraph halfway through, but hey, next time!)
 
-- 🦜 `LangChain` for thinking like a human (but faster)
-- 🤖 `OpenRouter` for LLM access (GPT-powered brain goo)
-- 🔌 `pyfirmata2` to talk to Arduino (it speaks fluent blinking)
-- ⚡ `FastAPI` to expose the brain to the internet
-- 🧼 Codebase clean enough to eat off (but don’t)
+## 💡 Arduino + PyFirmata2
 
----
+- Integrated a good old **Arduino UNO** using `pyfirmata2` to control physical devices like an actual light bulb.
+- No simulation. It's REAL. My bulb lives in fear now.
 
-## 🗺️ API Route
+## 💬 Live Demo (Coming Soon™️)
 
-```http
-POST /ask
-```
+Planning to post a video demo where I:
+1. Say something fancy on Swagger.
+2. Watch the bulb light up like I just discovered fire.
+3. Flex like Tony Stark in a small apartment.
 
-How to Run (a.k.a. Bring Frankenstein to Life)
+## 🔌 How to Run
 
-## 1. Install the dependencies
+```bash
 pip install -r requirements.txt
+python main.py ```
 
-## 2. Plug in your Arduino (yes, really)
-## 3. Set your OpenRouter API key
-export OPENROUTER_API_KEY=your_key_here
+Then open your browser and head to http://localhost:8000/docs
+Swagger awaits.
 
-## 4. Start the mind of MCP
-uvicorn main:app --reload
+Want to chat instead? The index.html is here to rescue — styled like ChatGPT, but with my DIY spirit.
 
-⚠️ Disclaimer
-This AI might win at rock-paper-scissors, but it is not responsible for any emotional damage caused by losing.
+🙏 Special Thanks
+Harrison Chase for making LangChain usable even by over-caffeinated devs like me.
 
-🧞 Future Features (or "Stretch Goals Because Why Not")
-🗺️ Ask for weather, because AI needs to feel the vibe outside
+The poor Arduino UNO on my desk, forced to listen to AI drama.
 
-🧏 Voice commands, so you can talk like Iron Man
+And you... for reading this madness. 🌈
 
-🤡 Joke generator, because this README isn't enough
-
-🧠 Memory, because even robots forget things sometimes
-
-🧔 About the Author
-Built by someone who:
-
-Wanted a smart assistant.
-
-Ended up with a light switch that tells jokes.
+🛠️ More experiments coming. But first, more coffee ☕
